@@ -1,10 +1,36 @@
+require('dotenv').config({
+  path: `.env`,
+});
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Gatsby Shopify Starter`,
+    description: `Gatsby & Shopify Starter for the WebDevEducation course.`,
+    author: `@tomphill`,
   },
   plugins: [
+    `gatsby-optional-chaining`,
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `open sans\:400`,
+          'open sans:400i',
+          `open sans\:700`,
+          'open sans:700i',
+          `open sans\:800`,
+          'open sans:800i',
+        ],
+      },
+    },
+    {
+      resolve: 'gatsby-source-shopify',
+      options: {
+        shopName: process.env.GATSBY_SHOP_NAME,
+        accessToken: process.env.GATSBY_ACCESS_TOKEN,
+        apiVersion: '2020-04',
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -24,11 +50,8 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/gatsby-icon.png`,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
-}
+};
