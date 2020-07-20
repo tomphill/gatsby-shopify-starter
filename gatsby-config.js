@@ -9,6 +9,7 @@ module.exports = {
     author: `@tomphill`,
   },
   plugins: [
+    `gatsby-plugin-styled-components`,
     `gatsby-optional-chaining`,
     {
       resolve: `gatsby-plugin-google-fonts`,
